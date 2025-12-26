@@ -1,131 +1,125 @@
+/* GLOBAL RESET (CRITICAL) */
+ body {
+  margin: 0;
+  padding: 0;
+} 
+
+/* HEADER */
 .header {
   width: 100%;
-  height: 80px;
-  line-height: 80px;
-}
-
-/* Logo */
-.logoImg {
-  width: 150px;
-  height: 70px;
-}
-
-
-
-.menu {
-  margin-bottom: 0;
-  list-style: none;         
-  padding-left: 500px;        
-}
-
-.nav__item a {
-  text-decoration: none;
-  color: var(--heading-color);
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
-
-/* Hover color */
-.nav__item a:hover {
-  color: orange;
-}
-
-/* Active link */
-.nav__item a.active__link {
-  color: orange;
-}
-
-/* ================= BUTTONS ================= */
-
-.nav_right a {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-/* Login (no background) */
-.login_btn {
-  color: var(--heading-color);
-  padding: 6px 14px;
-}
-.login_btn:hover {
-  /* background-color: #e69500; */
-  color:orange;
-}
-/* Register (orange background) */
-.register_btn {
-  background-color: orange;
-  color: #fff;
-  width: 70px;
-  height: 30px;
-  border-radius:10px;          /* optional: makes it circular */
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  font-size: 0.9rem;
-  padding: 5px;
-}
-
-
-.register_btn:hover {
-  background-color: #e69500;
-  color: #fff;
-}
-
-/* ================= MOBILE MENU ================= */
-
-.mobile__menu {
-  font-size: 1.4rem;
-  color: var(--heading-color);
-  display: none;
-  cursor: pointer;
-}
-
-/* ================= STICKY HEADER ================= */
-
-.stickey__header {
-  position: sticky;
-  top: 0;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  position: fixed;          /* 🔥 FORCE TO TOP */
+  top: 0;                   /* 🔥 TOUCH BROWSER TOP */
+  left: 0;
   z-index: 999;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 992px) {
-  .navigation {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    display: none;
-    z-index: 999;
-  }
-
-  .menu {
-    position: absolute;
-    right: 0;
-    width: 75%;
-    height: 100%;
-    background: #fff;
-    flex-direction: column;
-    padding-top: 80px;
-    line-height: 2.5rem;
-    padding-left: 30px;
-  }
-
-  .show__menu {
-    display: block;
-  }
-
-  .mobile__menu {
-    display: block;
-  }
+/* STICKY EFFECT */
+.stickey__header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 768px) {
-  .logoImg {
-    width: 120px;
-  }
+/* NAV WRAPPER */
+.nav_wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  gap: 40px;
+}
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 60px;             /* prevents extra top space */
+  width: auto;
+}
+
+/* NAVIGATION */
+.navigation {
+  display: flex;     /* 🔥 pulls nav close to logo */
+}
+.menu {
+  display: flex;
+  gap: 20px;             /* controlled spacing */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* NAV ITEMS */
+.nav__item a {
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #000;
+  padding-left:30px ;
+  /* gap: 10px; */
+}
+
+.nav__item a:hover,
+.active__link {
+  color: #ff7e01;
+}
+
+.active__link {
+  color: #ff7e01;
+}
+
+/* RIGHT SECTION */
+.nav_right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+    /* 🔥 keeps everything together */
+}
+
+/* LOGIN */
+.secondary__btn {
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
+  color: #000 !important;
+  font-weight: bolder;
+}
+.secondary__btn {
+  font-weight: 600; /* semi-bold */
+}
+.secondary__btn:hover {
+  color: #ff7e01 !important;
+}
+
+/* REGISTER */
+.primary__btn {
+  background: #ffa726 !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 1.05rem;
+  padding: 8px 22px;
+  border-radius: 30px;
+}
+
+/* MOBILE MENU */
+.mobile__menu {
+  display: none;
+}
+.nav_links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.navigation{
+  margin-left: 410px;
+}
+.nav_right .secondary__btn {
+  font-weight: 600;
+}
+.nav_right h5 {
+  font-weight: 600;
+}
+
+
+.logo {
+  pointer-events: none;
 }

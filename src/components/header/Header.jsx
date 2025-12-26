@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { Container, Row } from "reactstrap";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useRef, useContext } from "react";
+import { Container, Row, Button } from "reactstrap";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const nav_links = [
   { path: "/home", display: "Home" },
@@ -13,38 +14,44 @@ const nav_links = [
 const Header = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const navigate = useNavigate(); // ✅ correct place
+  const { user, dispatch } = useContext(AuthContext);
 
-  const stickeyHeaderFunc = () => {
-    window.addEventListener("scroll", () => {
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
+
+  // Sticky header
+  useEffect(() => {
+    const handleScroll = () => {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        headerRef.current.classList.add("stickey__header");
+        headerRef.current?.classList.add("stickey__header");
       } else {
-        headerRef.current.classList.remove("stickey__header");
+        headerRef.current?.classList.remove("stickey__header");
       }
-    });
-  };
+    };
 
-  useEffect(() => {
-    stickeyHeaderFunc();
-    return () =>
-      window.removeEventListener("scroll", stickeyHeaderFunc);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () =>
-    menuRef.current.classList.toggle("show__menu");
+    menuRef.current?.classList.toggle("show__menu");
 
   return (
     <header className="header" ref={headerRef}>
-      <Container>
-        <Row>
-          <div className="nav_wrapper d-flex align-items-center justify-content-between">
+      <Container fluid className="px-0">
 
+        
+          <div className="nav_wrapper d-flex align-items-center justify-content-between">
+            
             {/* Logo */}
             <div className="logo">
-              <img src={logo} alt="TravelWorld Logo" className="logoImg" />
+              <img src={logo} alt="Logo" className="logoImg" />
             </div>
 
             {/* Navigation */}
@@ -67,21 +74,38 @@ const Header = () => {
 
             {/* Right buttons */}
             <div className="nav_right d-flex align-items-center gap-4">
-              <Link to="/login" className="login_btn">
-                Login
-              </Link>
+              {user ? (
+                <>
+                  <h5 className="mb-0 btn primary__btn">
+                    {user.username}
+                  </h5>
+                  <Button className="btn btn-dark" onClick={logout}>
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    className="btn secondary__btn"
+                    onClick={() => navigate("/login")}
+                  >
+                    Login
+                  </Button>
 
-              <Link to="/register" className="register_btn">
-                Register
-              </Link>
+                  <Button
+                    className="btn primary__btn"
+                    onClick={() => navigate("/register")}
+                  >
+                    Register
+                  </Button>
+                </>
+              )}
 
               <span className="mobile__menu" onClick={toggleMenu}>
                 <i className="ri-menu-line"></i>
               </span>
             </div>
-
           </div>
-        </Row>
       </Container>
     </header>
   );
