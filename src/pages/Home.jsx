@@ -7,8 +7,8 @@ import heroVideo from "../assets/images/hero-video.mp4";
 import worldImg from "../assets/images/world.png";
 import experienceImg from "../assets/images/experience.png";
  import Subtitle from "../shared/Subtitle";
-// import SearhBar from "../shared/SearhBar";
-// import ServiceList from "../services/ServiceList";
+import SearhBar from "../shared/SearchBar";
+import ServiceList from "../services/ServiceList";
 // import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
 // import MasonryImagesGallery from "../components/Image-gallery/MasonryImagesGallery";
 // import Testimonials from "../components/Testimonial/Testimonials";
@@ -18,6 +18,7 @@ const Home = () => {
   return (
     <>
       {/* Hero section strat */}
+      <br /><br /><br /><br /><br />
       <section>
         <Container>
           <Row>
@@ -56,10 +57,11 @@ const Home = () => {
                 <img src={heroImg02} alt="Img 2" />
               </div>
             </Col>
-            {/* {<SearhBar /> } */}
+            {<SearhBar /> }
           </Row>
         </Container>
       </section>
+      <br /><br /><br /><br /><br />
       {/* Hero section ends */}
       <section>
         <Container>
@@ -68,11 +70,11 @@ const Home = () => {
               <h5 className="services__subtitle">What we serve</h5>
               <h2 className="services__title">We offer our best services</h2>
             </Col>
-            {/* <ServiceList /> */}
+            <ServiceList />
           </Row>
         </Container>
       </section>
-
+      <br /><br /><br /><br /><br />
       {/* featured tour section Start  */}
       <section>
         <Container>
